@@ -1,0 +1,28 @@
+[project]
+name = "cyber-trade-telemetry"
+version = "0.1.0"
+description = "Insurance Telemetry Gateway, Zero-Knowledge Supervisory Ratio Attestation & Underwriter Warranty Engine"
+readme = "README.md"
+authors = [
+    { name = "Daniel Tolczyk", email = "daniel.tolczyk@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "pydantic>=2.10.0",
+    "cryptography>=44.0.0",
+    "fastapi>=0.115.0",
+    "uvicorn>=0.34.0",
+]
+
+[project.scripts]
+ctl-telemetry = "cyber_trade_telemetry.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "httpx>=0.28.0",
+]
