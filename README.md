@@ -2,24 +2,28 @@
 
 The **Insurance Telemetry Gateway & Actuarial Warranty Engine** (`cyber-trade-telemetry`) is the reference privacy-preserving telemetry service for **The Cybersecurity Trade Project**.
 
-It enables enterprise Security Operations Centers (SOCs), Managed Security Service Providers (MSSPs), and Participating Employer Council (PEC) members to generate cryptographically verifiable, zero-knowledge proofs of labor standard compliance for cyber liability insurance carriers (Cyber Underwriting & Actuarial Advisory Consortium - CUAAC).
+It is designed as an **edge-deployed, on-premises / private cloud utility** for enterprise Security Operations Centers (SOCs), Managed Security Service Providers (MSSPs), and Participating Employer Council (PEC) members. It generates cryptographically verifiable, zero-knowledge proofs of labor standard compliance for cyber liability insurance carriers (Cyber Underwriting & Actuarial Advisory Consortium - CUAAC) without allowing raw operational logs or employee PII to leave the enterprise network boundary.
 
 ---
 
-## 1. Core Architecture & Capabilities
+## 1. Core Architecture & Edge Deployment Model
 
+* **On-Premises / Private Cloud Edge Execution:**
+  * Deployed inside the enterprise network boundary as a local CLI (`ctl-telemetry`) or private microservice sidecar.
+  * Connects directly to internal SIEM/SOAR clusters (Splunk, Microsoft Sentinel, Elastic).
+  * Raw operational logs, internal IP addresses, hostnames, client identifiers, and employee PII **never cross the corporate firewall**.
 * **Zero-Knowledge Supervisory Ratio Scoring (Pillar III & VII):**
-  * Verifies mandatory 2:1 on-shift Journeyman-to-Apprentice operational supervision ratios.
-  * Strips all internal IP addresses, hostnames, client identifiers, ticket descriptions, and employee PII before proof generation.
-  * Emits signed mathematical attestations verifiable by third-party insurance underwriters.
+  * Verifies the mandatory 2:1 on-shift Journeyman-to-Apprentice operational supervision ratio.
+  * Strips sensitive attributes locally and replaces practitioner IDs with salted one-way hashes (`sha256(practitioner_id)`).
+  * Emits an Ed25519-signed mathematical attestation (`ZeroKnowledgeRatioProof`) that is safe for public or underwriter egress.
 * **Master of Record (MoR) Verification Feed (Pillar IV & V):**
-  * Validates active, licensed Master Practitioner of Record oversight and digital stamping authority.
-  * Confirms active standing in the National Cybersecurity Trade Board (NCTB) Trust Registry.
+  * Validates active, licensed Master Practitioner of Record oversight and digital stamping authority on the active shift.
+  * MoR standing is correlated with the authoritative National Cybersecurity Trade Board (NCTB) Clearinghouse trust root.
 * **Actuarial Warranty & Discount Calculation:**
-  * Calculates preferred premium discount schedules (25% to 35% warranty credits under Pillar VII).
   * Evaluates consecutive compliant operational cycles and fatigue limit compliance (12-hour max shift, 10-hour rest period).
+  * Calculates preferred premium discount schedules (25% to 35% warranty credits under Pillar VII).
 * **SIEM / SOAR Ingestion Adapters:**
-  * Pre-built sanitization connectors for Splunk, Microsoft Sentinel, and Elastic SIEM audit logs.
+  * Pre-built local sanitization connectors for Splunk, Microsoft Sentinel, and Elastic SIEM audit logs.
 * **Defense-in-Depth Security:**
   * Constant-time cryptographic verification (`hmac.compare_digest`).
   * Ed25519 digital signatures and continuous SHA-256 Merkle proof traversal.

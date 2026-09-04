@@ -85,26 +85,26 @@
   <!-- Client-Side Sandbox Notice Banner -->
   <div class="sandbox-notice">
     <div class="container">
-      <strong style="color:var(--accent-cyan);">CLIENT-SIDE DEMONSTRATION SANDBOX:</strong> All ratio evaluations, PII sanitization scrubbing, and Ed25519 signature traversals run locally in browser memory via WebCrypto. Standalone Python CLI engine available in repository.
+      <strong style="color:var(--accent-cyan);">EDGE-DEPLOYED ARCHITECTURE SIMULATION:</strong> In production, this engine is deployed on-premises within the PEC enterprise boundary as a local CLI/sidecar (`ctl-telemetry`). Raw SIEM logs never cross the corporate perimeter. All PII scrubbing, ratio verification, and Ed25519 signing execute locally in browser memory via WebCrypto before proof egress.
     </div>
   </div>
 
   <main class="container">
     <div class="grid-2">
       
-      <!-- Column 1: Enterprise SOC Shift & Zero-Knowledge Proof Generator -->
+      <!-- Column 1: Internal Enterprise Boundary & Edge Proof Generator -->
       <div>
-        <div class="card">
+        <div class="card" style="border-top: 3px solid var(--accent-cyan);">
           <div class="card-title">
-            <span>1. Enterprise SOC Shift Telemetry</span>
+            <span>1. Internal Enterprise Boundary (PEC Edge Agent / Sidecar)</span>
             <span class="badge-compliant" id="shift-status-badge">Compliant 2:1</span>
           </div>
           <p class="card-desc">
-            Load sample SOC operational shift rosters or inspect how raw telemetry is scrubbed into zero-knowledge mathematical assertions before underwriter transmission.
+            Simulates the on-premises / VPC edge collector connecting to internal SIEMs (Splunk, Microsoft Sentinel). Inspect how raw logs are scrubbed and signed inside corporate walls before zero-knowledge egress.
           </p>
 
           <div class="form-group">
-            <label class="form-label" for="select-sample-shift">Select Operational Shift Scenario:</label>
+            <label class="form-label" for="select-sample-shift">Select Internal SOC Shift Scenario:</label>
             <select id="select-sample-shift" class="input-field" onchange="window.app && window.app.onShiftSelected()">
               <option value="shift-01">Scenario 1: Fully Compliant Day Shift (2:1 Ratio + Master of Record)</option>
               <option value="shift-02">Scenario 2: Deficit Shift - Ratio Violation (1 Journeyman to 5 Apprentices)</option>
@@ -128,42 +128,42 @@
           </div>
 
           <div class="btn-group">
-            <button class="btn btn-primary btn-sm" onclick="window.app && window.app.generateZKProof()">Generate ZK Proof</button>
-            <button class="btn btn-outline btn-sm" onclick="window.app && window.app.toggleRawLog()">Toggle Raw / Scrubbed Roster</button>
+            <button class="btn btn-primary btn-sm" onclick="window.app && window.app.generateZKProof()">Execute Local Sanitization &amp; ZK Sign</button>
+            <button class="btn btn-outline btn-sm" onclick="window.app && window.app.toggleRawLog()">Toggle Internal SIEM Raw Log</button>
           </div>
 
 
           <div id="box-raw-log" style="display:none;" class="code-container">
             <div class="code-header">
-              <label class="form-label" style="margin-bottom:0;">Raw SOC Shift Log (Contains Internal PII / Hostnames):</label>
+              <label class="form-label" style="margin-bottom:0;">Internal SIEM Roster (Confidential - Strictly Retained Inside Corporate Boundary):</label>
             </div>
             <div class="code-box" id="json-raw-log"></div>
           </div>
 
           <div class="code-container">
             <div class="code-header">
-              <label class="form-label" style="margin-bottom:0;">Generated Zero-Knowledge Proof (Zero PII - Sent to Underwriters):</label>
+              <label class="form-label" style="margin-bottom:0;">Sanitized Zero-Knowledge Proof (Permitted to Egress Firewall to Underwriter):</label>
               <button class="btn btn-outline btn-sm" style="padding:2px 8px; font-size:0.7rem;" onclick="window.app && window.app.copyZKProof()">Copy JSON</button>
             </div>
             <div class="code-box" id="json-zk-proof"></div>
           </div>
 
           <div class="policy-callout">
-            <div class="policy-callout-title">Pillar III Ratio Standard</div>
-            <div class="policy-callout-desc">Mandatory 2:1 on-shift operational ratio ensures active Journeyman mentorship and high-reliability SOC operation without apprentice abandonment.</div>
+            <div class="policy-callout-title">Edge Deployment &amp; Data Sovereignty Invariant</div>
+            <div class="policy-callout-desc">Unsanitized operational data never crosses the corporate firewall. The enterprise sidecar parses raw logs locally, discards PII/IPs, hashes identity tokens, and exports only mathematical assertions of compliance.</div>
           </div>
         </div>
       </div>
 
-      <!-- Column 2: Cyber Liability Underwriter Inspector & Warranty Engine -->
+      <!-- Column 2: External Underwriter Verification & Actuarial Portal -->
       <div>
-        <div class="card">
+        <div class="card" style="border-top: 3px solid var(--accent-emerald);">
           <div class="card-title">
-            <span>2. Underwriter Warranty &amp; Actuarial Scoring</span>
+            <span>2. External Verifier Boundary (CUAAC Underwriter Portal)</span>
             <span class="badge-compliant" id="warranty-status-badge">Tier 1 Preferred</span>
           </div>
           <p class="card-desc">
-            Independent cyber liability underwriter verification portal (Munich Re, Chubb, Beazley) evaluating policy premium credits (25% to 35% warranty discounts).
+            Independent cyber liability underwriter verification portal (Munich Re, Chubb, Beazley) auditing policy premium warranty credits (25% to 35% discounts) using strictly zero-knowledge mathematical proofs.
           </p>
 
           <div class="form-group">
